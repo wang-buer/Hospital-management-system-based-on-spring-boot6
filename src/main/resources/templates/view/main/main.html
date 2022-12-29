@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/css/public.css}" media="all"/>
+    <style>
+        #one, #two, #three, #four, #five, #six, #seven {
+            display: inline;
+            font-size: 15px;
+            left: 100px;
+            position: absolute;
+
+        }
+
+        #eight {
+            display: inline;
+            font-size: 15px;
+            left: 370px;
+            position: absolute;
+        }
+
+        .span {
+            position: absolute;
+            padding-left: 30px;
+            font-size: 15px;
+        }
+
+        .day {
+            margin-left: 20px;
+        }
+
+        li {
+            float: left;
+        }
+
+        #big {
+            width: 1012px;
+            height: 370px;
+            border: 1px solid rgb(232, 232, 232);
+            position: relative;
+            top: 10px;
+            left: 100px;
+            border-radius: 2px;
+        }
+
+        #table_title {
+            margin-top: 20px;
+            margin-left: 500px;
+            font-size: 25px;
+            top: 10px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<h2 id="table_title">医院日常值班安排表</h2>
+<table class="layui-table" id="big">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>时间</th>
+        <th>值班岗位</th>
+        <th>值班医生</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>星期一</td>
+        <td>值班主任</td>
+        <td><span id="one"></span></td>
+    </tr>
+    <tr>
+        <td>星期二</td>
+        <td>值班主任</td>
+        <td><span id="two"></span></td>
+    </tr>
+    <tr>
+        <td>星期三</td>
+        <td>值班主任</td>
+        <td><span id="three"></span></td>
+    </tr>
+    <tr>
+        <td>星期四</td>
+        <td>值班主任</td>
+        <td><span id="four"></span></td>
+    </tr>
+    <tr>
+        <td>星期五</td>
+        <td>值班主任</td>
+        <td><span id="five"></span></td>
+    </tr>
+    <tr>
+        <td>星期六</td>
+        <td>值班主任</td>
+        <td><span id="six"></span></td>
+    </tr>
+    <tr>
+        <td>星期日</td>
+        <td>值班主任</td>
+        <td><span id="seven"></span></td>
+    </tr>
+    </tbody>
+</table>
+
+<script th:src="@{/layui/layui.js}"></script>
+<script type="text/javascript" th:inline="none">
+    layui.use(['jquery', 'layer', 'form', 'table'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        var table = layui.table;
+        $.ajax({
+            url: 'main/one',
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    $("#one").append(
+                        "<li class='day'>" + item.doctorName + "</li>"
+                    )
+                });
+            }
+        })
+        $.ajax({
+            url: 'main/two',
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    $("#two").append(
+                        "<li class='day'>" + item.doctorName + "</li>"
+                    )
+                });
+            }
+        })
+        $.ajax({
+            url: 'main/three',
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    $("#three").append(
+                        "<li class='day'>" + item.doctorName + "</li>"
+                    )
+                });
+            }
+        })
+        $.ajax({
+            url: 'main/four',
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    $("#four").append(
+                        "<li class='day'>" + item.doctorName + "</li>"
+                    )
+                });
+            }
+        })
+        $.ajax({
+            url: 'main/five',
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    $("#five").append(
+                        "<li class='day'>" + item.doctorName + "</li>"
+                    )
+                });
+            }
+        })
+        $.ajax({
+            url: 'main/six',
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    $("#six").append(
+                        "<li class='day'>" + item.doctorName + "</li>"
+                    )
+                });
+            }
+        })
+        $.ajax({
+            url: 'main/seven',
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    $("#seven").append(
+                        "<li class='day'>" + item.doctorName + "</li>"
+                    )
+                });
+            }
+        })
+        $.ajax({
+            url: 'main/currentNum',
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                $(".currentNum").text(data);
+            }
+        })
+        $.ajax({
+            url: 'main/Total',
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                $(".Total").text(data);
+            }
+        })
+        $.ajax({
+            url: 'main/zhuyuanTotal',
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                $(".zhuyuan").text(data);
+            }
+        })
+        $.ajax({
+            url: 'main/currentZhuYuan',
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                $(".currentZhuYuan").text(data);
+            }
+        })
+    });
+
+</script>
+</body>
+</html>
